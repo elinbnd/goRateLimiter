@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"sync"
+	"strings"
 	"time"
 )
 type client struct {
@@ -97,6 +98,9 @@ func (r *RateLimiter) Adobe(ip string) bool{
 }
 
 func (r *RateLimiter) Trust(ip string) bool {
+	if stings.HasSuffix(path, ".png") {
+		return true;
+	}
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	subNetwork := subNetworking(ip)
